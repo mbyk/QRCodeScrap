@@ -2,3 +2,8 @@ extends layout
 
 block content
   h3= title
+  form(action="/login" method="POST")
+    div
+      input(type="email" name="email")
+    div
+      input(type="submit" value="ログイン")
