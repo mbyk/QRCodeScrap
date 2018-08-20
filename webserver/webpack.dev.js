@@ -25,7 +25,7 @@ const path = require('path')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: ./webfront/index,
+  entry: './webfront/index',
 
   output: {
     filename: '[name].js',
@@ -35,6 +35,7 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
+			exclude: /node_modules/,
       loader: 'babel-loader',
 
       options: {
