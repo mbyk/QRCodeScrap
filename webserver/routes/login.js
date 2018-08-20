@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const parseUser = require('./parseUser');
 
 router.get('/', (req, res, next) => {
+  const user = parseUser(req);
 
   res.render('login', {
-    title: 'Login'
+    title: 'Login',
+    user: user
   });
 });
 
@@ -16,8 +19,10 @@ router.post('/', (req, res, next) => {
     req.session.userId = email;
     res.redirect('/');
   } else {
+    const user = parseUser(req);
     res.render('login', {
-      title: 'Login'
+      title: 'Login',
+      user: user
     });
   }
 });
