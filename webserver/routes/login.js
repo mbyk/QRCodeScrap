@@ -14,30 +14,27 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const email = req.body.email
+  const password = req.body.password
 
-  // temp user
-  if (email === 'temp@example.com') {
+  axios.post('http://localhost:8000/api/v1/login', {
+    session: {
+      email: email,
+      password: password
+    }
+  })
+    .then((res) => res.data)
+    .then((json) => {
+      req.session.userId = json.user.email;
+      req.session.apiToken = json.api_token;
+      res.redirect('/');
+    }).catch((err) => {
+      console.log(`error: ${err}`);
 
-    axios.post('http://localhost:8000/api/v1/login')
-      .then((res) => res.data)
-      .then((json) => {
-        req.session.userId = json.user.user_id;
-        res.redirect('/');
-      }).catch((err) => {
-        console.log(`error: ${err}`);
+      res.render('login', {
+        title: 'Login'
+      });
+    })
 
-        res.render('login', {
-          title: 'Login'
-        });
-      })
-
-  } else {
-    const user = parseUser(req);
-    res.render('login', {
-      title: 'Login',
-      user: user
-    });
-  }
 });
 
 module.exports = router;
