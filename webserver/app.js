@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var config = require('./config');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
+var loginAccessDenyHandler = require('./routes/loginAccessDenyHandler')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -42,7 +43,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/login', login);
 app.use('/logout', logout);
-app.use('/signup', signup);
+app.use('/signup', loginAccessDenyHandler, signup);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
