@@ -1,11 +1,8 @@
-extends layout
-
-block content
-  h3= title
-  form(action="/login" method="POST")
-    div
-      input(type="email" name="email")
-    div
-      input(type="password" name="password")
-    div
-      input(type="submit" value="ログイン")
+h3= title
+form(action="/login" method="POST")
+  div
+    input(type="email" name="email")
+  div
+    input(type="password" name="password")
+  div
+    input(type="submit" value="ログイン")

@@ -41,7 +41,7 @@ app.use(session({
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/login', login);
+app.use('/login', loginAccessDenyHandler, login);
 app.use('/logout', logout);
 app.use('/signup', loginAccessDenyHandler, signup);
 
