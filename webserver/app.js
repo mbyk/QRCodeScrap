@@ -50,10 +50,10 @@ app.use('/login', loginAccessDenyHandler, login);
 app.use('/logout', logout);
 app.use('/signup', loginAccessDenyHandler, signup);
 app.use('/mylist', mylist);
-app.use('/my/qrcode', myQRCode);
-app.use('/qrcode/edit', qrcodeEdit);
-app.use('/qrcode/qrcodeNew', qrcodeNew);
-app.use('/qrcode/qrcodeShow', qrcodeShow);
+app.use('/my', myQRCode);
+app.use('/qrcode', qrcodeNew);
+app.use('/qrcode', qrcodeEdit);
+app.use('/qrcode', qrcodeShow);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

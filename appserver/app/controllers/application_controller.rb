@@ -38,10 +38,10 @@ class ApplicationController < ActionController::API
   private
 
     def api_token
-        @api_token ||= if request.headers['Authorization'].present? && 
-                        authorizationHeader = request.headers['Authorization']
-                        authorizationHeader&.split('Bearer ')&.last
-                       end
+      @api_token ||= if request.headers['Authorization'].present? && 
+                      authorizationHeader = request.headers['Authorization']
+                      authorizationHeader&.split('Bearer ')&.last
+                      end
     end
 
     def decoded_api_token
