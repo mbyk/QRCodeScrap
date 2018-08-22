@@ -14,6 +14,11 @@ var users = require('./routes/users');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
 var signup = require('./routes/signup');
+var qrcodeEdit = require('./routes/qrcode/edit');
+var qrcodeShow = require('./routes/qrcode/show');
+var qrcodeNew = require('./routes/qrcode/new');
+var mylist = require('./routes/mylist');
+var myQRCode = require('./routes/my/qrcode');
 
 var app = express();
 
@@ -44,6 +49,11 @@ app.use('/users', users);
 app.use('/login', loginAccessDenyHandler, login);
 app.use('/logout', logout);
 app.use('/signup', loginAccessDenyHandler, signup);
+app.use('/mylist', mylist);
+app.use('/my/qrcode', myQRCode);
+app.use('/qrcode/edit', qrcodeEdit);
+app.use('/qrcode/qrcodeNew', qrcodeNew);
+app.use('/qrcode/qrcodeShow', qrcodeShow);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
