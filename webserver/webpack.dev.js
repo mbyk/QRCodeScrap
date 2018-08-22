@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 /*
  * SplitChunksPlugin is enabled by default and replaced
@@ -33,30 +34,40 @@ module.exports = {
   },
 
   module: {
-    rules: [{
-      test: /\.js$/,
-			exclude: /node_modules/,
-      loader: 'babel-loader',
+    rules: [
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        loader: 'vue-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
 
-      options: {
-        plugins: ['syntax-dynamic-import'],
+        options: {
+          plugins: ['syntax-dynamic-import'],
 
-        presets: [['env', {
-          'modules': false
-        }]]
-      }
+          presets: [['env', {
+            'modules': false
+          }]]
+        }
 
-    }, {
-      test: /\.(scss|css)$/,
-
-      use: [{
-        loader: 'style-loader'
       }, {
-        loader: 'css-loader'
-      }, {
-        loader: 'sass-loader'
+        test: /\.(scss|css)$/,
+
+        use: [
+          {
+            loader: 'vue-style-loader'
+          },
+          {
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }]
       }]
-    }]
   },
 
 
@@ -76,5 +87,9 @@ module.exports = {
       minSize: 30000,
       name: true
     }
-  }
+  },
+
+  plugins: [
+    new VueLoaderPlugin()
+  ]
 }
