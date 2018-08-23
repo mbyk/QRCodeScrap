@@ -4,5 +4,6 @@ block content
   h1= title
   div
     each item in myQrcodes
-      div.item-card
-        p= item.title
+      a(href=`/qrcode/${item.qrcode_uuid}`)
+        div.item-card
+          p= item.title

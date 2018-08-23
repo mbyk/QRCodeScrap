@@ -4,6 +4,9 @@ block content
   div
     h1= title
     div
-      p= qrcode.title
+      if qrcode
+        p= qrcode.title
+      else
+        p= "データがありません。"
   
 
