@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const parseUser = require('./parseUser');
 const axios = require('axios');
+const config = require('../config');
 
 router.get('/', (req, res, next) => {
 
@@ -24,7 +25,7 @@ router.post('/', (req, res, next) => {
 
   const user = parseUser(req);
 
-  axios.post('http://localhost:8000/api/v1/signup', {
+  axios.post(`http://${config.APPSERVER_HOST}:${config.APPSERVER_PORT}/api/v1/signup`, {
     user: {
       username: username,
       email: email,

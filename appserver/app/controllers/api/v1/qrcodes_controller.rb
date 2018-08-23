@@ -41,6 +41,24 @@ class Api::V1::QrcodesController < ApplicationController
  
    end
 
+   def get
+      qrcodeUuid = params[:id]
+      qrcode = Qrcode.find_by(qrcode_uuid: qrcodeUuid)
+      if qrcode
+        render json: {
+          status: 'OK',
+          result: qrcode
+        }
+      else
+        render json: {
+          status: 'NG',
+          error: {
+            message: 'data not found.'
+          }
+        }
+      end
+   end
+
   private 
     # url type param
     def gen_type_url_params

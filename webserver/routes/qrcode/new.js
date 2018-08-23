@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const parseUser = require('../parseUser');
 const axios = require('axios');
+const config = require('../../config');
 
 router.get('/new', (req, res, next) => {
 
@@ -24,7 +25,7 @@ router.post('/', (req, res, next) => {
   const apiToken = req.session.apiToken;
 
   const http = axios.create({
-    baseURL: `http://localhost:8000/api/v1`
+    baseURL: `http://${config.APPSERVER_HOST}:${config.APPSERVER_PORT}/api/v1`
   })
   http.interceptors.request.use((config) => {
     if (apiToken) {  
@@ -48,7 +49,7 @@ router.post('/', (req, res, next) => {
   }).then((res) => res.data)
     .then((json) => {
       console.log(JSON.stringify(json))
-      res.redirect(`http://localhost:3000/${json.qrcode_uuid}`);
+      res.redirect(`/qrcode/${json.qrcode_uuid}`);
     })
     .catch((err) => {
       res.render('qrcode/new', {

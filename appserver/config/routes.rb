@@ -7,8 +7,10 @@ Rails.application.routes.draw do
       post '/api_token_validate', to: 'session#validate_api_token'
       post '/qrcode', to: 'qrcodes#create'
       get '/qrcodes', to: 'qrcodes#list'
+      get '/qrcodes/:id', to: 'qrcodes#get'
       get '/my/qrcode', to: 'my_qrcodes#list'
       get '/mylist', to: 'mylist#list'
+
     end
   end
 
