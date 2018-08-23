@@ -2,7 +2,7 @@ require 'securerandom'
 
 class Api::V1::QrcodesController < ApplicationController
 
-  before_action :authenticate_request!
+  before_action :authenticate_request!, only: [:create]
 
   def create
 
@@ -30,6 +30,16 @@ class Api::V1::QrcodesController < ApplicationController
     end
 
   end
+
+  def list
+
+    qrcodes  = Qrcode.all
+     render json: {
+       status: 'OK',
+       results: qrcodes
+     }
+ 
+   end
 
   private 
     # url type param

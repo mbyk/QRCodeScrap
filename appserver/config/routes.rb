@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       post '/signup', to: 'users#create'
       post '/api_token_validate', to: 'session#validate_api_token'
       post '/qrcode', to: 'qrcodes#create'
+      get '/qrcodes', to: 'qrcodes#list'
+      get '/my/qrcode', to: 'my_qrcodes#list'
     end
   end
 

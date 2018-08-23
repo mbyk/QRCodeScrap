@@ -2,12 +2,14 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type="text/javascript", src="/javascripts/main.js")
   body
 
     div#header
       ul
         if user
+          li 
+            a(href="/") ホーム
           li 
             a(href="/my/qrcode") 自分の投稿
           li 
@@ -24,5 +26,6 @@ html
           li
             a(href="/signup") サインアップ
 
-    block content
+    div.container
+      block content
     div#footer

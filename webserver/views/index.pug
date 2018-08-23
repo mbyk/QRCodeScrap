@@ -5,3 +5,8 @@ block content
   p Welcome to #{title}
   - var userId = user ? user.userId :  ""
   p #{userId}
+  if user
+    div
+      each item in qrcodes
+        div.item-card
+          p= item.title
