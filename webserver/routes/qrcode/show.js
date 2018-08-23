@@ -10,29 +10,36 @@ const title = '詳細'
 
 router.get('/:id', (req, res, next) => {
   const user = parseUser(req);
-  const qrcodeId = req.params.id
+  const qrcodeUuid = req.params.id
 
-  axios.get(`http://${config.APPSERVER_HOST}:${config.APPSERVER_PORT}/api/v1/qrcodes/${qrcodeId}`)
+  const apiToken = req.session.apiToken;
+
+  axios.get(`http://${config.APPSERVER_HOST}:${config.APPSERVER_PORT}/api/v1/qrcodes/${qrcodeUuid}`)
     .then((res) => res.data)
     .then((json) => {
-      console.log(`json: ${json}`)
       if (json.status === 'OK') {
         res.render('qrcode/show', {
           title: title,
           user: user,
-          qrcode: json.result
+          qrcode: json.result,
+          apiToken: apiToken,
+          qrcodeUuid: qrcodeUuid
         });
       } else {
         res.render('qrcode/show', {
           title: title,
-          user: user
+          user: user,
+          apiToken: apiToken,
+          qrcodeUuid: qrcodeUuid
         });
       }
     })
     .catch((err) => {
       res.render('qrcode/show', {
         title: title,
-        user: user
+        user: user,
+        apiToken: apiToken,
+        qrcodeUuid: qrcodeUuid
       });
     });
 

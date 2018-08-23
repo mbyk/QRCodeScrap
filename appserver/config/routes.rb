@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get '/qrcodes/:id', to: 'qrcodes#get'
       get '/my/qrcode', to: 'my_qrcodes#list'
       get '/mylist', to: 'mylist#list'
-
+      get '/mylist_status/:id', to: 'mylist#status'
     end
   end
 

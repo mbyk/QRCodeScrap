@@ -3,10 +3,12 @@ extends ../layout
 block content
   div
     h1= title
+    h1= qrcodeUuid
     div
       if qrcode
         p= qrcode.title
       else
         p= "データがありません。"
+    div#mylist_button 
+      <mylist-button apitoken=`#{apiToken}` qrcodeuuid=`#{qrcodeUuid}`></mylist-button>
   
-
