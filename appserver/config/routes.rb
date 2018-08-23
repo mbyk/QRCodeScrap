@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post '/qrcode', to: 'qrcodes#create'
       get '/qrcodes', to: 'qrcodes#list'
       get '/my/qrcode', to: 'my_qrcodes#list'
+      get '/mylist', to: 'mylist#list'
     end
   end
 
