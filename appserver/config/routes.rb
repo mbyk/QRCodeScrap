@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get '/my/qrcode', to: 'my_qrcodes#list'
       get '/mylist', to: 'mylist#list'
       get '/mylist_status/:id', to: 'mylist#status'
+      post '/mylist/:id', to: 'mylist#add_or_remove'
     end
   end
 

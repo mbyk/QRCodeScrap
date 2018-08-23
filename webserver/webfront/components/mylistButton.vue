@@ -1,5 +1,5 @@
 <template>
-  <button type="submit" class="mylist_button">{{ buttonName }}</button>
+  <button type="submit" @click="addOrRemoveItem" class="mylist_button">{{ buttonName }}</button>
 </template>
 
 <script>
@@ -16,15 +16,18 @@ export default {
   created() {
     console.log('mylist-button created');
 
+    console.log('uuid: ' + this.qrcodeuuid);
+    console.log('apitoken: ' + this.apitoken);
+
     // mylist registerd check
     fetch(`http://localhost:8000/api/v1/mylist_status/${this.qrcodeuuid}`, {
-      headers: { 'Authorization': `Bearer: ${this.apitoken}` }
+      headers: { 'Authorization': `Bearer ${this.apitoken}` },
     })
-      .then((res) => res.json)
+      .then((res) => res.json())
       .then((json) => {
 
         console.log(`json_: ${JSON.stringify(json)}`);
-        this.isRegistered = json.isRegistered;
+        this.isRegistered = json.is_registered;
       })
       .catch((err) => {
         console.log(`err: ${err}`);
@@ -35,6 +38,29 @@ export default {
   computed: {
     buttonName: function () {
       return this.isRegistered ? 'マイリストから削除' : 'マイリストに追加';
+    }
+  },
+
+  methods: {
+    addOrRemoveItem: function () {
+      console.log(`click: ${this.isRegistered}`)
+
+      // mylist registerd check
+      const mode = this.isRegistered ? "0" : "1"
+      fetch(`http://localhost:8000/api/v1/mylist/${this.qrcodeuuid}?mode=${mode}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${this.apitoken}` },
+      })
+        .then((res) => res.json())
+        .then((json) => {
+
+          console.log(`json_: ${JSON.stringify(json)}`);
+          this.isRegistered = json.is_registered;
+        })
+        .catch((err) => {
+          console.log(`err: ${err}`);
+        })
+
     }
   }
 }
