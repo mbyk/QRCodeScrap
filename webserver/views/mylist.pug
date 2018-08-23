@@ -2,3 +2,7 @@ extends layout
 
 block content
   h1= title
+  div
+    each item in qrcodes 
+      div.item-card
+        p= item.title
