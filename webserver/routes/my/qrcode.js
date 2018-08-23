@@ -29,14 +29,14 @@ router.get('/qrcode', (req, res, next) => {
     .then((json) => {
       console.log(`${JSON.stringify(json)}`)
       res.render('my/qrcode', {
-        title: '自分の投稿1',
+        title: '自分の投稿',
         user: user,
         myQrcodes: json.results
       });
     })
     .catch((err) => {
      res.render('my/qrcode', {
-        title: '自分の投稿2',
+        title: '自分の投稿',
         user: user,
         myQrcodes: [] 
       });
