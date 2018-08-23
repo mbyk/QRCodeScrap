@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180822055555) do
+ActiveRecord::Schema.define(version: 20180823032248) do
 
   create_table "gen_type_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "url"
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 20180822055555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["qrcode_id"], name: "index_gen_type_urls_on_qrcode_id"
+  end
+
+  create_table "mylists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "qrcode_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["qrcode_id"], name: "index_mylists_on_qrcode_id"
+    t.index ["user_id", "qrcode_id"], name: "index_mylists_on_user_id_and_qrcode_id", unique: true
+    t.index ["user_id"], name: "index_mylists_on_user_id"
   end
 
   create_table "qrcodes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -39,5 +49,7 @@ ActiveRecord::Schema.define(version: 20180822055555) do
   end
 
   add_foreign_key "gen_type_urls", "qrcodes"
+  add_foreign_key "mylists", "qrcodes"
+  add_foreign_key "mylists", "users"
   add_foreign_key "qrcodes", "users"
 end
