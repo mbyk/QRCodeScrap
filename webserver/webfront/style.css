@@ -20,6 +20,65 @@ body, html {
 #header {
   background-color: #ffffff;
   padding: 5px;
+  height: 70px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .header-left {
+    float: left;
+    width: 50%;
+
+    div {
+      height: 70px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      li {
+        display: inline;
+        list-style: none;
+        margin: 0 20px;
+        text-align: center;
+      }
+  
+    }
+    
+ }
+
+}
+
+.header-right {
+  float: right;
+  width: 50%;
+  div {
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    li {
+      display: inline;
+      list-style: none;
+      margin: 0 20px;
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+
+
+  
+
+
 }
 
 .item-card {
