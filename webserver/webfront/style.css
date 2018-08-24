@@ -5,11 +5,16 @@ body, html {
 }
 
 .container {
-  margin: 0 auto;
+  margin: 10px auto;
   width: 800px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box; 
+  &::after {
+    content: '';
+    clear: both;
+    display: block;
+  }
 }
 
 #header {
@@ -50,4 +55,10 @@ body, html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+#footer {
+  background-color: #ffffff;
+  padding: 5px;
+  height: 50px;
 }
