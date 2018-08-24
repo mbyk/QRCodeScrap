@@ -6,8 +6,9 @@ block content
   - var userId = user ? user.userId :  ""
   p #{userId}
   if user
-    div
+    div#qrcode_list
       each item in qrcodes
         a(href=`/qrcode/${item.qrcode_uuid}`)
           div.item-card
+            <qrcode-image qrcodedata=#{item.base64img}></qrcode-image>
             p= item.title

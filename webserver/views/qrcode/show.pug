@@ -5,6 +5,8 @@ block content
     h1= title
     div
       if qrcode
+        div#qrcode_list
+          <qrcode-image qrcodedata=#{qrcode.base64img}></qrcode-image>
         p= qrcode.title
       else
         p= "データがありません。"

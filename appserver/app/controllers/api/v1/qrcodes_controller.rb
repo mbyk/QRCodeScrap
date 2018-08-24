@@ -16,6 +16,11 @@ class Api::V1::QrcodesController < ApplicationController
     @qrcode.qrcode_uuid = qrcode_uuid
     @qrcode.user = @current_user
 
+    qr = RQRCode::QRCode.new( "http://localhost:3000/qrcode/#{qrcode_uuid}", :size => 10, :level => :h )
+    base64_image = qr.to_img.resize(200,200).to_data_url
+    content = base64_image.split(',', 2).last
+    @qrcode.base64img = content
+
     @gen_type_url = GenTypeUrl.new(gen_type_url_params)
     @qrcode.gen_type_url = @gen_type_url
     if @qrcode.save
@@ -37,10 +42,10 @@ class Api::V1::QrcodesController < ApplicationController
   def list
 
     qrcodes  = Qrcode.all
-     render json: {
-       status: 'OK',
-       results: qrcodes
-     }
+    render json: {
+      status: 'OK',
+      results: qrcodes
+    }
  
    end
 
@@ -78,7 +83,7 @@ class Api::V1::QrcodesController < ApplicationController
       return
     end
 
-    qr = RQRCode::QRCode.new( qrcode_data, :size => 5, :level => :h )
+    qr = RQRCode::QRCode.new( qrcode_data, :size => 10, :level => :h )
     base64_image = qr.to_img.resize(200,200).to_data_url
 
     content = base64_image.split(',', 2).last
