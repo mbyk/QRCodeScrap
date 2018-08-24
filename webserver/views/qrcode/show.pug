@@ -3,13 +3,20 @@ extends ../layout
 block content
   div
     h1= title
-    div
+    div#qrcode_container
       if qrcode
         div#qrcode_list
-          <qrcode-image qrcodedata=#{qrcode.base64img}></qrcode-image>
-        p= qrcode.title
+          <qrcode-image imgwidth="300" imgheight="300" qrcodedata=#{qrcode.base64img}></qrcode-image>
       else
         p= "データがありません。"
-    div#mylist_button 
-      <mylist-button apitoken=#{apiToken} qrcodeuuid=#{qrcodeUuid}></mylist-button>
-  
+
+    div#detail_container
+      p= qrcode.title
+      div
+        - var url = qrcode.gen_type_url.url
+        a(href=`${url}`)
+          div
+            p #{url} 
+      div#mylist_button 
+        <mylist-button apitoken=#{apiToken} qrcodeuuid=#{qrcodeUuid}></mylist-button>
+    

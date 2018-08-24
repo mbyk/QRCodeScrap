@@ -17,6 +17,8 @@ html
             a(href="/qrcode/new") 新規投稿 
       ul
         if user
+          li
+            p #{user.userId}
           li 
             a(href="/logout") ログアウト
         else

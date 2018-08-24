@@ -6,5 +6,5 @@ block content
     each item in qrcodes 
       a(href=`/qrcode/${item.qrcode_uuid}`)
         div.item-card
-          <qrcode-image qrcodedata=#{item.base64img}></qrcode-image>
+          <qrcode-image imgwidth="200" imgheight="200" qrcodedata=#{item.base64img}></qrcode-image>
           p= item.title

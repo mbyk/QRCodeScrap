@@ -1,11 +1,12 @@
 <template>
-  <img width=200 height=200 :src="img_base64"/>
-
+  <div class="img-container">
+    <img :width="imgwidth" :height="imgheight" :src="img_base64"/>
+  </div>
 </template>
   
 <script>
   export default {
-    props: ['qrcodedata'],
+    props: ['qrcodedata', 'imgwidth', 'imgheight'],
 
     data() {
       return {
@@ -36,4 +37,7 @@
 </script>
 
 <style lang="scss" scoped>
+  .img-container {
+    text-align: center;
+  }
 </style>

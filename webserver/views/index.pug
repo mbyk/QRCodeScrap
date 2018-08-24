@@ -2,13 +2,11 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
   - var userId = user ? user.userId :  ""
-  p #{userId}
   if user
     div#qrcode_list
       each item in qrcodes
         a(href=`/qrcode/${item.qrcode_uuid}`)
           div.item-card
-            <qrcode-image qrcodedata=#{item.base64img}></qrcode-image>
+            <qrcode-image imgwidth="200" imgheight="200" qrcodedata=#{item.base64img}></qrcode-image>
             p= item.title
