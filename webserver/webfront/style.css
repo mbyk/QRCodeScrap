@@ -19,6 +19,12 @@ a {
   }
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
+
 .container {
   margin: 0px auto;
   padding-bottom: 70px;
@@ -85,11 +91,7 @@ a {
       display: inline;
       list-style: none;
       margin: 0 20px;
-      p {
-        margin: 0;
-        padding: 0;
-      }
-    }
+     }
   }
 
 }
@@ -136,4 +138,19 @@ a {
   position: absolute;
   width: 100%;
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+
+  .qr_caution {
+    color: #ffffff;
+    font-size: 0.6em;
+  }
+
+  .copyright {
+    color: #ffffff;
+    font-size: 1em;
+  }
 }
