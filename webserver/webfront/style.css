@@ -11,6 +11,14 @@ body {
   min-height: 100%;
 }
 
+a {
+  color: #005acc;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
 .container {
   margin: 0px auto;
   padding-bottom: 70px;
@@ -33,6 +41,8 @@ body {
   ul {
     margin: 0;
     padding: 0;
+    font-size: 1.2em;
+    font-weight: bold;
 
     a {
       text-decoration: none;
@@ -120,7 +130,7 @@ body {
 }
 
 #footer {
-  background-color: #ffffff;
+  background-color: #005acc;
   padding: 5px;
   height: 50px;
   position: absolute;
