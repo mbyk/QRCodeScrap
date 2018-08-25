@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="224px" height="34px" viewBox="0 0 224 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(2.000000, 3.000000)">
+            <text id="QRCODE-SCRAP" font-family="DINCondensed-Bold, DIN Condensed" font-size="40" font-style="condensed" font-weight="bold" fill="#005ACC">
+                <tspan x="34" y="28">QRCODE SCRAP</tspan>
+            </text>
+            <g id="Group-2" stroke-width="4" stroke="#005ACC">
+                <polyline id="Path" points="18.7380662 0 27.7492767 0.00853900672 27.6855049 9.55768714"></polyline>
+                <polyline id="Path" points="27.6605132 18.3472299 27.6525418 28 18.7380662 27.9316879"></polyline>
+                <polyline id="Path" points="0.166875279 9.65277013 0.174846751 0 9.08932229 0.0683120537"></polyline>
+                <polyline id="Path" points="9.17808571 27.904917 0.166875279 27.896378 0.230647055 18.3472299"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

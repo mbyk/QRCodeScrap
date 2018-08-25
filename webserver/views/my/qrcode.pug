@@ -1,7 +1,6 @@
 extends ../layout
 
 block content
-  h1= title
   div#qrcode_list
     each item in myQrcodes
       a(href=`/qrcode/${item.qrcode_uuid}`)

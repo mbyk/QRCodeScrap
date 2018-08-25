@@ -1,15 +1,11 @@
 extends ../layout
 
 block content
-  h1= title
-  form(action="/qrcode" method="POST")
+  form(action="/qrcode" method="POST")#new_container
     div
       div
-        label(for="title") title
-      input(type="title" name="title" id="title")
-    div
+        input(type="title" name="title" id="title" placeholder="タイトル")
       div
-        label(for="title") url
-      input(type="url" name="url" id="url")
+        input(type="url" name="url" id="url" placeholder="URL")
     div
       input(type="submit" value="作成")

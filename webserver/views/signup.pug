@@ -1,15 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  form(action="/signup" method="POST")
+  form(action="/signup" method="POST")#signup_container
     div
-      input(type="text" name="username" value="")
-    div
-      input(type="email" name="email")
-    div
-      input(type="password" name="password")
-    div
-      input(type="password" name="password_confirmation")
+      div
+        input(type="text" name="username" value="" placeholder="名前")
+      div
+        input(type="email" name="email" placeholder="メールアドレス")
+      div
+        input(type="password" name="password" placeholder="パスワード")
+      div
+        input(type="password" name="password_confirmation" placeholder="確認パスワード")
     div
       input(type="submit" value="サインアップ")

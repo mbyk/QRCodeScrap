@@ -2,11 +2,12 @@ extends layout
 
 block content
   div.container
-    h1= title
-    form(action="/login" method="POST")
+
+    form(action="/login" method="POST")#login_container
       div
-        input(type="email" name="email")
-      div
-        input(type="password" name="password")
+        div
+          input(type="email" name="email" placeholder="メールアドレス")
+        div
+          input(type="password" name="password" placeholder="パスワード")
       div
         input(type="submit" value="ログイン")

@@ -9,13 +9,19 @@ html
         div
           if user
             li 
-              a(href="/") ホーム
+              a(href="/") 
+                img(src="/images/logo.svg")
             li 
               a(href="/my/qrcode") 自分の投稿
             li 
               a(href="/mylist") マイリスト
             li
               a(href="/qrcode/new") 新規投稿 
+          else
+            li
+              a(href="/") 
+                img(src="/images/logo.svg")
+
       ul.header-right
         div
           if user
