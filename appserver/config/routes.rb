@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get '/qrcode/generate', to: 'qrcodes#generate'
       get '/qrcodes', to: 'qrcodes#list'
       get '/qrcodes/:id', to: 'qrcodes#get'
+      delete '/qrcodes/:id', to: 'qrcodes#destroy'
       get '/my/qrcode', to: 'my_qrcodes#list'
       get '/mylist', to: 'mylist#list'
       get '/mylist_status/:id', to: 'mylist#status'

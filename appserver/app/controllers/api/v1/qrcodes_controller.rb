@@ -80,6 +80,23 @@ class Api::V1::QrcodesController < ApplicationController
       end
    end
 
+  def destroy
+    qrcodeUuid = params[:id]  
+    qrcode = Qrcode.find_by(qrcode_uuid: qrcodeUuid)
+    if qrcode && qrcode.destroy
+      render json: {
+        status: 'OK'
+      }
+    else
+      render json: {
+        status: 'NG',
+        error: {
+          message: 'destroy failed'
+        }
+      }
+    end
+  end
+
    def generate
 
     gen_mode = FILE_MODE
