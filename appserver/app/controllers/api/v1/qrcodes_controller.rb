@@ -21,6 +21,16 @@ class Api::V1::QrcodesController < ApplicationController
     content = base64_image.split(',', 2).last
     @qrcode.base64img = content
 
+    if gen_type_url_params[:url].blank?
+      render json: {
+        status: 'NG',
+        erorr: {
+          message: "url not found."
+        }
+      }
+      return
+    end
+
     @gen_type_url = GenTypeUrl.new(gen_type_url_params)
     @qrcode.gen_type_url = @gen_type_url
     if @qrcode.save

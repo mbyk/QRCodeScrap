@@ -9,21 +9,15 @@ const title = 'ホーム';
 router.get('/', function(req, res, next) {
   const user = parseUser(req);
 
-  if (user) {
-    axios.get(`http://${config.APPSERVER_HOST}:${config.APPSERVER_PORT}/api/v1/qrcodes`)
-      .then((res) => res.data)
-      .then((json) => {
-        console.log(JSON.stringify(json))
-        res.render('index', { title: title, user: user, qrcodes:json.results });
-      })
-      .catch((err) => {
-        res.render('index', { title: title, user: user, qrcodes: []});
-      });
-
-  } else {
-    res.render('index', { title: title, user: user });
-  }
-
+  axios.get(`http://${config.APPSERVER_HOST}:${config.APPSERVER_PORT}/api/v1/qrcodes`)
+    .then((res) => res.data)
+    .then((json) => {
+      console.log(JSON.stringify(json))
+      res.render('index', { title: title, user: user, qrcodes:json.results });
+    })
+    .catch((err) => {
+      res.render('index', { title: title, user: user, qrcodes: []});
+    });
 
 });
 

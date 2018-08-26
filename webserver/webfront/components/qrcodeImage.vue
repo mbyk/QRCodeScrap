@@ -15,9 +15,6 @@
     },
 
     created() {
-      console.log('qrcode-image created');
-      console.log('qrcodedata: ' + this.qrcodedata);
-
       this.img_base64 = 'data:image/png;base64,' + this.qrcodedata;
 
       // // mylist registerd check

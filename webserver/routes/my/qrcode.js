@@ -11,6 +11,11 @@ router.get('/qrcode', (req, res, next) => {
 
   const apiToken = req.session.apiToken;
 
+  if (!user) {
+    res.redirect('/');
+    return
+  }
+
   const http = axios.create({
     baseURL: `http://localhost:8000/api/v1`
   })

@@ -49,7 +49,14 @@ router.post('/', (req, res, next) => {
   }).then((res) => res.data)
     .then((json) => {
       console.log(JSON.stringify(json))
-      res.redirect(`/qrcode/${json.qrcode_uuid}`);
+      if (json.status === 'OK') {
+        res.redirect(`/qrcode/${json.qrcode_uuid}`);
+      } else {
+        res.render('qrcode/new', {
+          title: '新規投稿',
+          user: user
+        }); 
+      }
     })
     .catch((err) => {
       res.render('qrcode/new', {

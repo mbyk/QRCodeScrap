@@ -17,6 +17,7 @@ block content
         a(href=`${url}`)
           div
             p #{url} 
-      div#mylist_button 
-        <mylist-button apitoken=#{apiToken} qrcodeuuid=#{qrcodeUuid}></mylist-button>
+      if user
+        div#mylist_button 
+          <mylist-button apitoken=#{apiToken} qrcodeuuid=#{qrcodeUuid}></mylist-button>
     
