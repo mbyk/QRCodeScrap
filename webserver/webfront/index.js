@@ -1,5 +1,6 @@
 import './style.css';
 import mylistButton from './components/mylistButton.vue'
+import deleteButton from './components/qrcodeDeleteButton.vue'
 import qrcodeImage from './components/qrcodeImage.vue'
 import Vue from 'vue';
 
@@ -23,3 +24,12 @@ if (qrcodeListElement) {
   });
 } 
 
+const deleteButtonlement = document.getElementById('delete_button');
+if (deleteButtonlement) {
+  new Vue({
+    el: '#delete_button',
+    components: {
+      'delete-button': deleteButton
+    }
+  });
+} 
