@@ -10,8 +10,9 @@ block content
         p= "データがありません。"
 
     div#detail_container
-      p= qrcode.title
-      div
+      div#detail_title
+        p= qrcode.title
+      div#detail_url
         - var url = qrcode.gen_type_url.url
         a(href=`${url}`)
           div
