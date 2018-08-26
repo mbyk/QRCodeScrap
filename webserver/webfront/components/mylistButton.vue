@@ -1,5 +1,5 @@
 <template>
-  <button type="submit" @click="addOrRemoveItem" class="mylist_button">{{ buttonName }}</button>
+  <button type="submit" @click="addOrRemoveItem" :class="{ mylist_button: true, add_action: !isRegistered, remove_action: isRegistered }">{{ buttonName }}</button>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
   data() {
     return {
       data: 'マイリストに追加',
-      isRegistered: false
+      isRegistered: false,
     }
   },
 
@@ -71,6 +71,34 @@ export default {
   .mylist_button {
     width: 200px;
     height: 50px;
+  }
+
+  .add_action {
+    background-color: #fbb030;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: bold;
+    outline: none;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  } 
+
+  .remove_action {
+    background-color: #ff4c4c;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: bold;
+    outline: none;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 </style>
 
