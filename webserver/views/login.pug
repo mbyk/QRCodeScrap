@@ -5,9 +5,11 @@ block content
 
     form(action="/login" method="POST")#login_container
       div
-        div
+        div#login_mail
           input(type="email" name="email" placeholder="メールアドレス")
-        div
+          img(src="/images/mail_hoso.svg" width="32")
+        div#login_password
           input(type="password" name="password" placeholder="パスワード")
+          img(src="/images/lock_hoso.svg" width="32")
       div
         input(type="submit" value="ログイン")
