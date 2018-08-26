@@ -51,7 +51,7 @@ class Api::V1::QrcodesController < ApplicationController
 
   def list
 
-    qrcodes  = Qrcode.all
+    qrcodes  = Qrcode.order(created_at: :desc)
     render json: {
       status: 'OK',
       results: qrcodes
