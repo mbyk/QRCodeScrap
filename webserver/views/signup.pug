@@ -3,13 +3,17 @@ extends layout
 block content
   form(action="/signup" method="POST")#signup_container
     div
-      div
+      div#signup_name
         input(type="text" name="username" value="" placeholder="名前")
-      div
+        img(src="/images/102_h_hoso.svg" width="30")
+      div#signup_mail
         input(type="email" name="email" placeholder="メールアドレス")
-      div
+        img(src="/images/mail_hoso.svg" width="30")
+      div#signup_password
         input(type="password" name="password" placeholder="パスワード")
-      div
+        img(src="/images/lock_hoso.svg" width="30")
+      div#signup_password_confirmation
         input(type="password" name="password_confirmation" placeholder="確認パスワード")
+        img(src="/images/lock_hoso.svg" width="30")
     div
       input(type="submit" value="サインアップ")

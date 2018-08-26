@@ -252,8 +252,6 @@ body {
 }
 
 
-
-
 #signup_container {
   display: flex;
   flex-direction: column;
@@ -270,10 +268,13 @@ body {
     width: 300px;
     height: 40px;
     outline: none;
-    padding: 0 5px;
+    padding: 5px 40px 5px;
     border-radius: 5px;
     border: 1px solid #caccd1;
     background-color: #ffffff;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 
     &:last-child {
       margin-top: 20px;
@@ -296,6 +297,42 @@ body {
     }
   }
 
+}
+
+#signup_name {
+  position: relative;
+
+  img {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+  }
+
+  margin-bottom: 20px;
+}
+
+#signup_mail {
+  position: relative;
+
+  img {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+  }
+
+  margin-bottom: 20px;
+}
+
+#signup_password, #signup_password_confirmation {
+  position: relative;
+
+  img {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+  }
+
+  margin-bottom: 20px;
 }
 
 #new_container {
