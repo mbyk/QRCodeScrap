@@ -1,6 +1,7 @@
 class Qrcode < ApplicationRecord
 	belongs_to :user
 	has_one :gen_type_url, dependent: :destroy
+	has_many :mylists, dependent: :destroy
 
 	validates :title, presence: true
 	validates :gen_type, presence: true
