@@ -50,8 +50,6 @@ class Api::V1::QrcodesController < ApplicationController
   end
 
   def list
-
-
     qrcodes = Qrcode.page(params[:page] ||= 1).order(created_at: :desc).per(6)
 
     render json: {

@@ -10,6 +10,7 @@ router.get('/qrcode', (req, res, next) => {
   const user = parseUser(req);
 
   const apiToken = req.session.apiToken;
+  const page = req.query.page || 1;
 
   if (!user) {
     res.redirect('/');
@@ -29,19 +30,20 @@ router.get('/qrcode', (req, res, next) => {
     return Promise.reject(error)
   })
 
-  http.get('/my/qrcode')
+  http.get(`/my/qrcode?page=${page}`)
     .then((res) => res.data)
     .then((json) => {
-      console.log(`${JSON.stringify(json)}`)
       let results = json.results;
+      let meta = json.meta;
 
       res.render('my/qrcode', {
         title: '自分の投稿',
         user: user,
-        myQrcodes: results
+        myQrcodes: results,
+        meta: meta
       });
     }
-    )
+  )
 
     // async function getQrcodeBase64(data) {
     //   return axios(`http://localhost:8000/api/v1/qrcode/generate?mode=base64&qrcode_data=${data}`)
