@@ -42,7 +42,11 @@
             }
           }
 
-          if (this.meta.currentPage >= 6 && this.meta.currentPage <= this.meta.totalPages - 3) {
+          const showableLastPage = this.meta.currentPage + 3;
+          if (showableLastPage < this.meta.totalPages) {
+            for (let i = this.meta.currentPage + 1; i <= showableLastPage; i++) {
+              datas.push(i);
+            }
             datas.push('...');
           } else {
             for (let i = this.meta.currentPage + 1; i <= this.meta.totalPages; i++) {
