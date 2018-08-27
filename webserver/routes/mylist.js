@@ -8,6 +8,7 @@ const axios = require('axios');
 router.get('/', (req, res, next) => {
 
   const user = parseUser(req);
+  const page = req.query.page || 1;
 
   if (!user) {
     res.redirect('/');
@@ -29,14 +30,15 @@ router.get('/', (req, res, next) => {
     return Promise.reject(error)
   })
 
-  http.get('/mylist')
+  http.get(`/mylist?page=${page}`)
     .then((res) => res.data)
     .then((json) => {
       console.log(`${JSON.stringify(json)}`)
       res.render('mylist', {
         title: 'マイリスト',
         user: user,
-        qrcodes: json.results
+        qrcodes: json.results,
+        meta: json.meta
       });
     })
     .catch((err) => {

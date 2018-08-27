@@ -1,6 +1,6 @@
 <template lang="pug">
   div.pagination_content
-    a(href="/?page=1" id="firstPageLink" :class="{ disabled: firstPageDisabled }") 先頭
+    a(href="firstPageLink" id="firstPageLink" :class="{ disabled: firstPageDisabled }") 先頭
     a(:href="prevPageLink" id="prevPageLink" :class="{ disabled: firstPageDisabled }") &lt;
     a(:href="nextPageLink" id="nextPageLink" :class="{ disabled: lastPageDisabled }") &gt;
     a(:href="lastPageLink" id="lastPageLink" :class="{ disabled: lastPageDisabled }") 最後
@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    props: ['currentpage', 'prevpage', 'nextpage', 'totalpages', 'totalcount'],
+    props: ['currentpage', 'prevpage', 'nextpage', 'totalpages', 'totalcount', 'linkpath'],
 
     data() {
       return {
@@ -74,7 +74,7 @@
         aElement.textContent = data;
 
         if (data !== '...') {
-          aElement.setAttribute('href', `/?page=${data}`);
+          aElement.setAttribute('href', `${this.linkpath}?page=${data}`);
         }
 
         if (data === '...') {
@@ -92,20 +92,25 @@
 
     computed: {
       lastPageLink: function () {
-        return `/?page=${this.meta.totalPages}`
+        return `${this.linkpath}?page=${this.meta.totalPages}`
+      },
+
+
+      firstPageLink: function () {
+        return `${this.linkpath}?page=1`
       },
 
       prevPageLink: function () {
         const currentPage = this.meta.currentPage;
         const page = currentPage === 1 ? 1 : currentPage - 1;
-        return `/?page=${page}`
+        return `${this.linkpath}?page=${page}`
       },
 
       nextPageLink: function () {
         const currentPage = this.meta.currentPage;
         const totalPages = this.meta.totalPages;
         const page = currentPage === totalPages ? totalPages : currentPage + 1;
-        return `/?page=${this.meta.currentPage + 1}`
+        return `${this.linkpath}?page=${this.meta.currentPage + 1}`
       },
 
       lastPageDisabled: function () {

@@ -10,3 +10,12 @@ block content
           div.item-card
             <qrcode-image imgwidth="200" imgheight="200" qrcodedata=#{item.base64img}></qrcode-image>
             p= item.title
+  if meta
+    div#pagination_container
+      - var currentpage = JSON.stringify(meta.current_page);
+      - var prevpage = JSON.stringify(meta.prev_page);
+      - var nextpage = JSON.stringify(meta.next_page);
+      - var totalcount = JSON.stringify(meta.total_count);
+      - var totalpages = JSON.stringify(meta.total_pages);
+      <pagination currentpage=#{currentpage} prevpage=#{prevpage} nextpage=#{nextpage} totalcount=#{totalcount} totalpages="#{totalpages}" linkpath="/mylist"></pagination>
+  
