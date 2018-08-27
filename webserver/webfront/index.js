@@ -2,6 +2,7 @@ import './style.css';
 import mylistButton from './components/mylistButton.vue'
 import deleteButton from './components/qrcodeDeleteButton.vue'
 import qrcodeImage from './components/qrcodeImage.vue'
+import pagination from './components/pagination.vue'
 import Vue from 'vue';
 
 const mylistButtonElement = document.getElementById('mylist_button');
@@ -30,6 +31,17 @@ if (deleteButtonlement) {
     el: '#delete_button',
     components: {
       'delete-button': deleteButton
+    }
+  });
+} 
+
+
+const paginationElement = document.getElementById('pagination_container');
+if (paginationElement) {
+  new Vue({
+    el: '#pagination_container',
+    components: {
+      'pagination': pagination
     }
   });
 } 

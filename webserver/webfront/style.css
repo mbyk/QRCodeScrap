@@ -377,3 +377,13 @@ body {
   }
 
 }
+
+#qrcode_list {
+
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+
+}
