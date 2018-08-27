@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  div#qrcode_list
+  div(id="qrcode_list" v-cloak)
     if myQrcodes.length === 0
       p= "データがありません。"
     else

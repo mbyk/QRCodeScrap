@@ -1,14 +1,14 @@
 extends layout
 
 block content
-  div#qrcode_list
+  div(id="qrcode_list" v-cloak)
     each item in qrcodes
       a(href=`/qrcode/${item.qrcode_uuid}`)
         div.item-card
           <qrcode-image imgwidth="200" imgheight="200" qrcodedata=#{item.base64img}></qrcode-image>
           p= item.title
   if meta
-    div#pagination_container
+    div(id="pagination_container")
       - var currentpage = JSON.stringify(meta.current_page);
       - var prevpage = JSON.stringify(meta.prev_page);
       - var nextpage = JSON.stringify(meta.next_page);
