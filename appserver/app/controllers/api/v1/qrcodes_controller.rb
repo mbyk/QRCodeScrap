@@ -5,7 +5,7 @@ class Api::V1::QrcodesController < ApplicationController
   FILE_MODE = 'file'
   BASE64_MODE = 'base64'
 
-  before_action :authenticate_request!, only: [:create]
+  before_action :authenticate_request!, only: [:create, :status, :published_or_unpublished]
 
   def create
 
@@ -50,7 +50,7 @@ class Api::V1::QrcodesController < ApplicationController
   end
 
   def list
-    qrcodes = Qrcode.page(params[:page] ||= 1).order(created_at: :desc).per(6)
+    qrcodes = Qrcode.page(params[:page] ||= 1).where(published: true).order(created_at: :desc).per(6)
 
     render json: {
       status: 'OK',
@@ -68,14 +68,14 @@ class Api::V1::QrcodesController < ApplicationController
 
    def get
       qrcodeUuid = params[:id]
-      qrcode = Qrcode.find_by(qrcode_uuid: qrcodeUuid)
-      genTypeUrl = qrcode.gen_type_url
-      _qrcode = qrcode.attributes.merge(gen_type_url:  { url: genTypeUrl.url })
+      qrcode = Qrcode.includes([:user, :gen_type_url]).find_by(qrcode_uuid: qrcodeUuid)
+      # genTypeUrl = qrcode.gen_type_url
+      # _qrcode = qrcode.attributes.merge(gen_type_url:  { url: genTypeUrl.url })
 
-      if _qrcode
+      if qrcode
         render json: {
           status: 'OK',
-          result: _qrcode
+          result: qrcode.as_json(include: { user: { only: [:username, :email] }, gen_type_url: { only: [:url] } })
         }
       else
         render json: {
@@ -103,6 +103,102 @@ class Api::V1::QrcodesController < ApplicationController
       }
     end
   end
+
+    # mode: 0
+  # - published
+  # mode: 1
+  # - unpublished
+  def published_or_unpublished
+
+    mode = params[:mode] 
+    qrcodeUuid = params[:id]
+
+    if mode == nil || qrcodeUuid == nil
+      render json: {
+        status: 'NG',
+        error: {
+          message: 'request param invalid.'
+        }
+      }
+      return
+    end
+
+    if mode == "0" || mode == "1"
+      email = @decoded_api_token[:email]
+      user = User.find_by(email: email)
+
+      qrcode = Qrcode.find_by(qrcode_uuid: qrcodeUuid)
+      if qrcode == nil
+        render json: {
+          status: 'NG',
+          error: {
+            message: 'qrcode not found.'
+          }
+        }
+        return
+      end
+
+      if mode == "1"
+        qrcode.published = true
+        if qrcode.save
+          render json: {
+            status: 'OK',
+            is_published: true 
+          }
+        else
+          render json: {
+            status: 'OK',
+            is_published: false 
+          }
+        end
+
+      else
+        qrcode.published = false
+        if qrcode.save
+          render json: {
+            status: 'OK',
+            is_published: false 
+          }
+        else
+          render json: {
+            status: 'OK',
+            is_published: true 
+          }
+        end
+      end
+   else
+      render json: {
+        status: 'NG',
+        error: {
+          message: 'request param invalid.'
+        }
+      }
+    end
+
+  end
+
+  def status
+    qrcodeUuid = params[:id]
+    email = @decoded_api_token[:email]
+    user = User.find_by(email: email)
+
+    qrcode = Qrcode.find_by(qrcode_uuid: qrcodeUuid)
+    if qrcode == nil
+      render json: {
+        status: 'NG',
+        error: {
+          message: 'qrcode not found.'
+        }
+      }
+      return
+    end
+
+    render json: {
+      status: 'OK',
+      is_published: qrcode.published 
+    }
+  end
+
 
    def generate
 

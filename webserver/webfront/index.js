@@ -4,6 +4,7 @@ import deleteButton from './components/qrcodeDeleteButton.vue'
 import qrcodeImage from './components/qrcodeImage.vue'
 import pagination from './components/pagination.vue'
 import modal from './components/modal.vue'
+import publishButton from './components/qrcodePublishButton.vue'
 import Vue from 'vue';
 
 new Vue({
@@ -58,6 +59,7 @@ new Vue({
     'mylist-button': mylistButton,
     'qrcode-image': qrcodeImage,
     'delete-button': deleteButton,
+    'publish-button': publishButton,
     'pagination': pagination,
     'modal': modal
   }

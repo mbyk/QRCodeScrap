@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180824063149) do
+ActiveRecord::Schema.define(version: 20180828104621) do
 
   create_table "gen_type_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "url"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20180824063149) do
     t.datetime "updated_at", null: false
     t.string "qrcode_uuid", null: false
     t.text "base64img", null: false
+    t.boolean "published", default: false
     t.index ["user_id"], name: "index_qrcodes_on_user_id"
   end
 

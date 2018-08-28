@@ -8,8 +8,7 @@ class ApplicationController < ActionController::API
       {
         api_token: JsonWebToken.encode({ username: user.username, email: user.email, exp: (Time.now + 2.week).to_i }),
         user: {
-          username: user.username,
-          email: user.email
+          username: user.username
         }
       }
     end
@@ -38,7 +37,7 @@ class ApplicationController < ActionController::API
   private
 
     def api_token
-      @api_token ||= if request.headers['Authorization'].present? && 
+      @api_token ||= if request.headers['Authorization'].present? 
                       authorizationHeader = request.headers['Authorization']
                       authorizationHeader&.split('Bearer ')&.last
                       end

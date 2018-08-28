@@ -20,6 +20,9 @@ block content
       if user
         div#mylist_button 
           <mylist-button apitoken=#{apiToken} qrcodeuuid=#{qrcodeUuid}></mylist-button>
+      if user && user.userId === qrcode.user.username
+        div#publish_button 
+          <publish-button apitoken=#{apiToken} qrcodeuuid=#{qrcodeUuid}></publish-button>
         div#delete_button 
           <delete-button apitoken=#{apiToken} qrcodeuuid=#{qrcodeUuid} @confirm-action="openModal('delete-qrcode')" @close-action="showModal = false" ref="delete-button"></delete-button>
 

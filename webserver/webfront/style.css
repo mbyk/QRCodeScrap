@@ -156,6 +156,10 @@ body {
   margin-bottom: 20px;
 }
 
+#publish_button {
+  margin-bottom: 20px;
+}
+
 #footer {
   background-color: #005acc;
   padding: 5px;

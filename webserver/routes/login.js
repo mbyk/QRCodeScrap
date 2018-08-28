@@ -24,7 +24,7 @@ router.post('/', (req, res, next) => {
   })
     .then((res) => res.data)
     .then((json) => {
-      req.session.userId = json.user.email;
+      req.session.userId = json.user.username;
       req.session.apiToken = json.api_token;
       res.redirect('/');
     }).catch((err) => {
