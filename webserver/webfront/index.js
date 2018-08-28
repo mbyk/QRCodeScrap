@@ -12,12 +12,22 @@ new Vue({
     showModal: false
   },
 
+  created() {
+    this.$on('show', function() {
+      console.log('show!!!!!!!');
+    })
+  },
+
   methods: {
     openModal(eventName, event) {
-      event.preventDefault();
+      if (event) {
+        event.preventDefault();
+      }
 
       if (eventName === 'logout') {
-        this.$refs.modal.setupData('確認', 'ログアウトしてもよろしいですか？');
+        this.$refs.modal.setupData('確認', 'ログアウトしてもよろしいですか？', eventName);
+      } else if (eventName === 'delete-qrcode') {
+        this.$refs.modal.setupData('確認', '削除してもよろしいですか？', eventName);
       }
 
       this.showModal = true;
@@ -26,6 +36,8 @@ new Vue({
     defaultAction(eventName) {
       if (eventName === 'logout') {
         this.logoutAction();
+      } else if (eventName === 'delete-qrcode') {
+        this.deleteQrcodeAction();
       }
     },
 
@@ -36,8 +48,11 @@ new Vue({
     logoutAction() {
       this.showModal = false;
       location.href = '/logout';
+    },
+    
+    deleteQrcodeAction() {
+      this.$refs['delete-button'].remove();
     }
-
   },
   components: {
     'mylist-button': mylistButton,

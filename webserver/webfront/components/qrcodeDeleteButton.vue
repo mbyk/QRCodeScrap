@@ -1,5 +1,5 @@
 <template>
-  <button type="submit" @click="remove" :class="{ remove_button: true, remove_action: true }">{{ buttonName }}</button>
+  <button type="submit" @click="confirmAction" :class="{ remove_button: true, remove_action: true }">{{ buttonName }}</button>
 </template>
 
 <script>
@@ -24,6 +24,11 @@ export default {
   },
 
   methods: {
+
+    confirmAction: function() {
+      this.$emit('confirm-action');
+    },
+
     remove: function () {
 
       // mylist registerd check
@@ -36,6 +41,7 @@ export default {
 
           console.log(`json_: ${JSON.stringify(json)}`);
           if (json.status === 'OK') {
+            this.$emit('close-action');
             const backUrl = document.referrer ? document.referrer : '/';
             location.href = backUrl;
             return;

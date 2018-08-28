@@ -34,20 +34,22 @@
     data () {
       return {
         title: '',
-        body: ''
+        body: '',
+        eventName: ''
       }
     },
     methods: {
-      closeAction: function() {
-        this.$emit('default-action', 'logout'); 
+      closeAction() {
+        this.$emit('default-action', this.eventName); 
       },
-      cancelAction: function() {
-        this.$emit('cancel-action', 'logout'); 
+      cancelAction() {
+        this.$emit('cancel-action', this.eventName); 
       },
 
-      setupData: function(title, body) {
+      setupData(title, body, eventName) {
         this.title = title;
         this.body = body;
+        this.eventName = eventName;
       }
     }
   }
