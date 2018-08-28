@@ -391,3 +391,14 @@ body {
 [v-cloak] {
   display: none;
 }
+
+/* #modal_container {
+  position: fixed;
+  z-index: 999;
+  background-color: #000000;
+  opacity: 0.5;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-height: 100%;
+} */

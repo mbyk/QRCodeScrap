@@ -5,44 +5,46 @@ html
     link(rel="shortcut icon" href="/favicon.ico")
     link(rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico")
   body
+    div#app
+      div#header
+        ul.header-left
+          div
+            if user
+              li 
+                a(href="/") 
+                  img(src="/images/logo.svg")
+              li 
+                a(href="/my/qrcode") 自分の投稿
+              li 
+                a(href="/mylist") マイリスト
+              li
+                a(href="/qrcode/new") 新規投稿 
+            else
+              li
+                a(href="/") 
+                  img(src="/images/logo.svg")
 
-    div#header
-      ul.header-left
+        ul.header-right
+          div
+            if user
+              li
+                p #{user.userId}
+              li 
+                a(@click="openModal('logout', $event)") ログアウト
+            else
+              li 
+                a(href="/login") ログイン
+              li
+                a(href="/signup") サインアップ
+
+      div(class="container")
+        block content
+      div#footer
         div
-          if user
-            li 
-              a(href="/") 
-                img(src="/images/logo.svg")
-            li 
-              a(href="/my/qrcode") 自分の投稿
-            li 
-              a(href="/mylist") マイリスト
-            li
-              a(href="/qrcode/new") 新規投稿 
-          else
-            li
-              a(href="/") 
-                img(src="/images/logo.svg")
-
-      ul.header-right
+          p.site_description QRCODE SCRAPは、データをQRコード化し、スクラップすることができます。
+          p.qr_caution QRコードは(株)デンソーウェーブの登録商標です
         div
-          if user
-            li
-              p #{user.userId}
-            li 
-              a(href="/logout") ログアウト
-          else
-            li 
-              a(href="/login") ログイン
-            li
-              a(href="/signup") サインアップ
+          p.copyright © QRCODE SCRAP
 
-    div(class="container")
-      block content
-    div#footer
-      div
-        p.site_description QRCODE SCRAPは、データをQRコード化し、スクラップすることができます。
-        p.qr_caution QRコードは(株)デンソーウェーブの登録商標です
-      div
-        p.copyright © QRCODE SCRAP
+        modal(v-show="showModal" @cancel-action="cancelAction" @default-action="defaultAction" ref="modal")
     script(type="text/javascript", src="/javascripts/main.js")

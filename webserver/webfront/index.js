@@ -3,45 +3,47 @@ import mylistButton from './components/mylistButton.vue'
 import deleteButton from './components/qrcodeDeleteButton.vue'
 import qrcodeImage from './components/qrcodeImage.vue'
 import pagination from './components/pagination.vue'
+import modal from './components/modal.vue'
 import Vue from 'vue';
 
-const mylistButtonElement = document.getElementById('mylist_button');
-if (mylistButtonElement) {
-  new Vue({
-    el: '#mylist_button',
-    components: {
-      'mylist-button': mylistButton
-    }
-  });
-} 
+new Vue({
+  el: '#app',
+  data: {
+    showModal: false
+  },
 
-const qrcodeListElement = document.getElementById('qrcode_list');
-if (qrcodeListElement) {
-  new Vue({
-    el: '#qrcode_list',
-    components: {
-      'qrcode-image': qrcodeImage
-    }
-  });
-} 
+  methods: {
+    openModal(eventName, event) {
+      event.preventDefault();
 
-const deleteButtonlement = document.getElementById('delete_button');
-if (deleteButtonlement) {
-  new Vue({
-    el: '#delete_button',
-    components: {
-      'delete-button': deleteButton
-    }
-  });
-} 
+      if (eventName === 'logout') {
+        this.$refs.modal.setupData('確認', 'ログアウトしてもよろしいですか？');
+      }
 
+      this.showModal = true;
+    },
 
-const paginationElement = document.getElementById('pagination_container');
-if (paginationElement) {
-  new Vue({
-    el: '#pagination_container',
-    components: {
-      'pagination': pagination
+    defaultAction(eventName) {
+      if (eventName === 'logout') {
+        this.logoutAction();
+      }
+    },
+
+    cancelAction(eventName) {
+      this.showModal = false;
+    },
+
+    logoutAction() {
+      this.showModal = false;
+      location.href = '/logout';
     }
-  });
-} 
+
+  },
+  components: {
+    'mylist-button': mylistButton,
+    'qrcode-image': qrcodeImage,
+    'delete-button': deleteButton,
+    'pagination': pagination,
+    'modal': modal
+  }
+});
