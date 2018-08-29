@@ -2,6 +2,7 @@ extends ../layout
 
 block content
   form(action="/qrcode" method="POST")#new_container
+    category-select
     div
       div
         input(type="title" name="title" id="title" placeholder="タイトル")
