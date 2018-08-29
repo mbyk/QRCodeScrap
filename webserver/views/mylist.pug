@@ -7,15 +7,7 @@ block content
     else
       each item in qrcodes 
         a(href=`/qrcode/${item.qrcode_uuid}`)
-          div.item-card
-            <qrcode-image imgwidth="200" imgheight="200" qrcodedata=#{item.base64img}></qrcode-image>
-            div.item-card-detail
-              div.user_info
-                div.user_info_item
-                  img(src="/images/102_h_hoso.svg" width="20")
-                div.user_info_item
-                  p= item.user.username
-              p.item-card-title= item.title
+          <card-item :cardinfo="{ imgwidth: 200, imgheight: 200, item: #{JSON.stringify(item)}}"></card-item>
   if meta
     div#pagination_container
       - var currentpage = JSON.stringify(meta.current_page);
