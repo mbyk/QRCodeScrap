@@ -6,7 +6,7 @@ class Api::V1::MyQrcodesController < ApplicationController
     email = @decoded_api_token[:email]
     user = User.find_by(email: email)
     #myQrcodes = Qrcode.where(user_id: user.id).order(created_at: :desc)
-    myQrcodes = Qrcode.page(params[:page] ||= 1).where(user_id: user.id).order(created_at: :desc).per(6)
+    myQrcodes = Qrcode.page(params[:page] ||= 1).includes([:user]).where(user_id: user.id).order(created_at: :desc).per(6)
     # _myQrcodes = myQrcodes.map do |q|
     #   qrcodeUuid = q.qrcode_uuid
     #   encodeData = "http://localhost:3000/qrcode/#{qrcodeUuid}"
@@ -17,7 +17,7 @@ class Api::V1::MyQrcodesController < ApplicationController
     # end
     render json: {
       status: 'OK',
-      results: myQrcodes,
+      results: myQrcodes.as_json(include: { user: { only: [:username] } }),
       meta: {
         current_page: myQrcodes.current_page,
         next_page: myQrcodes.next_page,

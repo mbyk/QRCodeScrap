@@ -7,10 +7,10 @@ class Api::V1::MylistController < ApplicationController
     user = User.find_by(email: email)
     mylists = Mylist.where(user_id: user.id)
     qrcodeIds = mylists.map(&:qrcode_id)
-    qrcodes = Qrcode.page(params[:page] ||= 1).qrcodes_in(qrcodeIds, :DESC).per(6)
+    qrcodes = Qrcode.page(params[:page] ||= 1).includes([:user]).qrcodes_in(qrcodeIds, :DESC).per(6)
     render json: {
       status: 'OK',
-      results: qrcodes,
+      results: qrcodes.as_json(include: { user: { only: [:username] } }),
       meta: {
         current_page: qrcodes.current_page,
         next_page: qrcodes.next_page,

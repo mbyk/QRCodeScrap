@@ -9,7 +9,13 @@ block content
         a(href=`/qrcode/${item.qrcode_uuid}`)
           div.item-card
             <qrcode-image imgwidth="200" imgheight="200" qrcodedata=#{item.base64img}></qrcode-image>
-            p= item.title
+            div.item-card-detail
+              div.user_info
+                div.user_info_item
+                  img(src="/images/102_h_hoso.svg" width="20")
+                div.user_info_item
+                  p= item.user.username
+              p.item-card-title= item.title
   if meta
     div#pagination_container
       - var currentpage = JSON.stringify(meta.current_page);

@@ -50,11 +50,11 @@ class Api::V1::QrcodesController < ApplicationController
   end
 
   def list
-    qrcodes = Qrcode.page(params[:page] ||= 1).where(published: true).order(created_at: :desc).per(6)
+    qrcodes = Qrcode.page(params[:page] ||= 1).includes([:user]).where(published: true).order(created_at: :desc).per(6)
 
     render json: {
       status: 'OK',
-      results: qrcodes,
+      results: qrcodes.as_json(include: { user: { only: [:username]  } }),
       meta: {
         current_page: qrcodes.current_page,
         next_page: qrcodes.next_page,
@@ -75,7 +75,7 @@ class Api::V1::QrcodesController < ApplicationController
       if qrcode
         render json: {
           status: 'OK',
-          result: qrcode.as_json(include: { user: { only: [:username, :email] }, gen_type_url: { only: [:url] } })
+          result: qrcode.as_json(include: { user: { only: [:username] }, gen_type_url: { only: [:url] } })
         }
       else
         render json: {
