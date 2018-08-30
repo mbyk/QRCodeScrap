@@ -35,6 +35,7 @@ router.get('/qrcode', (req, res, next) => {
     .then((json) => {
       let results = json.results;
       let meta = json.meta;
+      console.log(`json=> ${JSON.stringify(results)}`)
 
       res.render('my/qrcode', {
         title: '自分の投稿',

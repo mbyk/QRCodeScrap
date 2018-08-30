@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180828104621) do
+ActiveRecord::Schema.define(version: 20180830083243) do
+
+  create_table "gen_type_maps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "qrcode_id"
+    t.index ["qrcode_id"], name: "index_gen_type_maps_on_qrcode_id"
+  end
 
   create_table "gen_type_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "url"
@@ -50,6 +58,7 @@ ActiveRecord::Schema.define(version: 20180828104621) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "gen_type_maps", "qrcodes"
   add_foreign_key "gen_type_urls", "qrcodes"
   add_foreign_key "mylists", "qrcodes"
   add_foreign_key "mylists", "users"

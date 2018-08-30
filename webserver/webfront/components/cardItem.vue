@@ -2,7 +2,7 @@
   div.item-card
     <qrcode-image :imgwidth="cardinfo.imgwidth" :imgheight="cardinfo.imgheight" :qrcodedata="cardinfo.item.base64img"></qrcode-image>
     div.qrcode-type-icon
-      img(src="/images/125_arr_hoso.svg")
+      img(:src="icon_path")
     div.item-card-detail
       div.user_info
         div.user_info_item
@@ -25,6 +25,14 @@
 
     data() {
       return {
+        link_icon_path: '/images/125_arr_hoso.svg',
+        map_icon_path: '/images/compass_hoso.svg'
+      }
+    },
+
+    computed: {
+      icon_path: function() {
+        return this.cardinfo.item.gen_type == 1 ? this.link_icon_path : this.map_icon_path;
       }
     },
 

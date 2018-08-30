@@ -9,7 +9,6 @@ class Api::V1::QrcodesController < ApplicationController
 
   def create
 
-    @gen_type_url = GenTypeUrl.new(gen_type_url_params)
     @qrcode = Qrcode.new(qrcode_params)
     
     qrcode_uuid = SecureRandom.hex(30) 
@@ -21,18 +20,34 @@ class Api::V1::QrcodesController < ApplicationController
     content = base64_image.split(',', 2).last
     @qrcode.base64img = content
 
-    if gen_type_url_params[:url].blank?
-      render json: {
-        status: 'NG',
-        erorr: {
-          message: "url not found."
+    if @qrcode.gen_type == 1 
+      @gen_type_url = GenTypeUrl.new(gen_type_url_params)
+      if gen_type_url_params[:url].blank?
+        render json: {
+          status: 'NG',
+          erorr: {
+            message: "url not found."
+          }
         }
-      }
-      return
+        return
+      end
+  
+      @qrcode.gen_type_url = @gen_type_url
+    elsif @qrcode.gen_type == 2
+      @gen_type_map = GenTypeMap.new(gen_type_map_params)
+      if gen_type_map_params[:address].blank?
+        render json: {
+          status: 'NG',
+          erorr: {
+            message: "address not found."
+          }
+        }
+        return
+      end
+  
+      @qrcode.gen_type_map = @gen_type_map
     end
 
-    @gen_type_url = GenTypeUrl.new(gen_type_url_params)
-    @qrcode.gen_type_url = @gen_type_url
     if @qrcode.save
       render json: {
         status: 'OK',
@@ -68,14 +83,14 @@ class Api::V1::QrcodesController < ApplicationController
 
    def get
       qrcodeUuid = params[:id]
-      qrcode = Qrcode.includes([:user, :gen_type_url]).find_by(qrcode_uuid: qrcodeUuid)
+      qrcode = Qrcode.includes([:user, :gen_type_url, :gen_type_map]).find_by(qrcode_uuid: qrcodeUuid)
       # genTypeUrl = qrcode.gen_type_url
       # _qrcode = qrcode.attributes.merge(gen_type_url:  { url: genTypeUrl.url })
 
       if qrcode
         render json: {
           status: 'OK',
-          result: qrcode.as_json(include: { user: { only: [:username] }, gen_type_url: { only: [:url] } })
+          result: qrcode.as_json(include: { user: { only: [:username] }, gen_type_url: { only: [:url] }, gen_type_map: { only: [:address] } })
         }
       else
         render json: {
@@ -238,6 +253,11 @@ class Api::V1::QrcodesController < ApplicationController
     # url type param
     def gen_type_url_params
       params.require(:gen_type_url).permit(:url)
+    end
+
+    # url type param
+    def gen_type_map_params
+      params.require(:gen_type_map).permit(:address)
     end
 
     # common param

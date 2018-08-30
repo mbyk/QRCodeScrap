@@ -5,9 +5,9 @@
       img(src="/images/arr_down_hoso.svg")
     ul#select_type_list
       li(@click="selectLink")
-        a(href="#") リンク
+        router-link(to="/link") リンク
       li(@click="selectMap")
-        a(href="#") 地図
+        router-link(to="/map") 地図
 </template>
 
 <script>
@@ -21,7 +21,7 @@
     },
 
     mounted() {
-
+      this.$router.push('/link');
     },
 
     methods: {

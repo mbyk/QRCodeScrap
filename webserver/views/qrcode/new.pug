@@ -3,10 +3,6 @@ extends ../layout
 block content
   form(action="/qrcode" method="POST")#new_container
     category-select
+    router-view(@validate="validatePostData")
     div
-      div
-        input(type="title" name="title" id="title" placeholder="タイトル")
-      div
-        input(type="url" name="url" id="url" placeholder="URL")
-    div
-      input(type="submit" value="作成")
+      input(type="submit" value="作成" :class="{ disabled: !newPostValidated }")

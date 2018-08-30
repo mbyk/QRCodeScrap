@@ -154,6 +154,7 @@
       -moz-box-sizing: border-box;
       color: #6a737b;
       text-decoration: none;
+      opacity: 1;
 
       &:hover {
         background-color: #005acc;

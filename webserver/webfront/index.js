@@ -7,13 +7,32 @@ import modal from './components/modal.vue'
 import publishButton from './components/qrcodePublishButton.vue'
 import cardItem from './components/cardItem.vue'
 import categorySelect from './components/categorySelect.vue'
+import qrcodeTypeLink from './components/qrcodeTypeLink.vue'
+import qrcodeTypeMap from './components/qrcodeTypeMap.vue'
+import linkDetail from './components/linkDetail.vue'
+import mapDetail from './components/mapDetail.vue'
+
+
+const routes = [
+  { path: '/link', component: qrcodeTypeLink },
+  { path: '/map', component: qrcodeTypeMap }
+]
+
+const router = new VueRouter({
+  routes
+});
 
 import Vue from 'vue';
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter);
 
 new Vue({
   el: '#app',
+  router,
   data: {
-    showModal: false
+    showModal: false,
+    newPostValidated: false
   },
 
   created() {
@@ -56,6 +75,10 @@ new Vue({
     
     deleteQrcodeAction() {
       this.$refs['delete-button'].remove();
+    },
+
+    validatePostData(isValid) {
+      this.newPostValidated = isValid;
     }
   },
   components: {
@@ -66,6 +89,8 @@ new Vue({
     'pagination': pagination,
     'card-item': cardItem,
     'modal': modal,
-    'category-select': categorySelect
+    'category-select': categorySelect,
+    'link-detail': linkDetail,
+    'map-detail': mapDetail
   }
 });

@@ -20,7 +20,14 @@ router.post('/', (req, res, next) => {
 
   const url = req.body.url
   const title = req.body.title
-  const genType = '1'
+  const address = req.body.address;
+  
+  let genType = '1';
+  if (req.body.gen_type === 'link') {
+    genType = '1';
+  } else if (req.body.gen_type === 'map') {
+    genType = '2';
+  }
 
   const apiToken = req.session.apiToken;
 
@@ -41,10 +48,13 @@ router.post('/', (req, res, next) => {
   http.post('/qrcode', {
     qrcode: {
       title: title,
-      gen_type: '1'
+      gen_type: genType
     },
     gen_type_url: {
       url: url
+    },
+    gen_type_map: {
+      address: address
     }
   }).then((res) => res.data)
     .then((json) => {

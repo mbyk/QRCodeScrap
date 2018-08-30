@@ -10,13 +10,11 @@ block content
         p= "データがありません。"
 
     div#detail_container
-      div#detail_title
-        p= qrcode.title
-      div#detail_url
-        - var url = qrcode.gen_type_url.url
-        a(href=`${url}`)
-          div
-            p #{url} 
+      if qrcode.gen_type === 1 
+        <link-detail :qrcode="{ info: #{JSON.stringify(qrcode)}}"></link-detail>
+      if qrcode.gen_type === 2
+        <map-detail :qrcode="{ info: #{JSON.stringify(qrcode)}}"></map-detail>
+
       if user
         div#mylist_button 
           <mylist-button apitoken=#{apiToken} qrcodeuuid=#{qrcodeUuid}></mylist-button>
