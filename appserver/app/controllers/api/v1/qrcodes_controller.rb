@@ -5,7 +5,7 @@ class Api::V1::QrcodesController < ApplicationController
   FILE_MODE = 'file'
   BASE64_MODE = 'base64'
 
-  before_action :authenticate_request!, only: [:create, :status, :published_or_unpublished]
+  before_action :authenticate_request!, only: [:create, :status, :published_or_unpublished, :destroy]
 
   def create
 

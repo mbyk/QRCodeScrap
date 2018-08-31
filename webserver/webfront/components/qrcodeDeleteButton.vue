@@ -32,7 +32,7 @@ export default {
     remove: function () {
 
       // mylist registerd check
-      fetch(`http://localhost:8000/api/v1/qrcodes/${this.qrcodeuuid}`, {
+      fetch(`/api/v1/qrcodes/${this.qrcodeuuid}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${this.apitoken}` },
       })

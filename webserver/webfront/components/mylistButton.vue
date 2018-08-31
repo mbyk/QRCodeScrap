@@ -20,7 +20,7 @@ export default {
     console.log('apitoken: ' + this.apitoken);
 
     // mylist registerd check
-    fetch(`http://localhost:8000/api/v1/mylist_status/${this.qrcodeuuid}`, {
+    fetch(`/api/v1/mylist_status/${this.qrcodeuuid}`, {
       headers: { 'Authorization': `Bearer ${this.apitoken}` },
     })
       .then((res) => res.json())
@@ -47,7 +47,7 @@ export default {
 
       // mylist registerd check
       const mode = this.isRegistered ? "0" : "1"
-      fetch(`http://localhost:8000/api/v1/mylist/${this.qrcodeuuid}?mode=${mode}`, {
+      fetch(`/api/v1/mylist/${this.qrcodeuuid}?mode=${mode}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${this.apitoken}` },
       })

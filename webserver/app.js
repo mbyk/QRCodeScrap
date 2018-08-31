@@ -19,6 +19,7 @@ var qrcodeShow = require('./routes/qrcode/show');
 var qrcodeNew = require('./routes/qrcode/new');
 var mylist = require('./routes/mylist');
 var myQRCode = require('./routes/my/qrcode');
+var api = require('./routes/api/v1/api');
 
 var app = express();
 
@@ -54,6 +55,7 @@ app.use('/my', myQRCode);
 app.use('/qrcode', qrcodeNew);
 app.use('/qrcode', qrcodeEdit);
 app.use('/qrcode', qrcodeShow);
+app.use('/api/v1', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

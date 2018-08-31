@@ -19,7 +19,7 @@
       console.log('apitoken: ' + this.apitoken);
 
       // qrcode status check
-      fetch(`http://localhost:8000/api/v1/qrcode_status/${this.qrcodeuuid}`, {
+      fetch(`/api/v1/qrcode_status/${this.qrcodeuuid}`, {
         headers: { 'Authorization': `Bearer ${this.apitoken}` },
       })
         .then((res) => res.json())
@@ -46,7 +46,7 @@
 
         // qrcode status check
         const mode = this.isPublished ? "0" : "1"
-        fetch(`http://localhost:8000/api/v1/qrcodes/${this.qrcodeuuid}?mode=${mode}`, {
+        fetch(`/api/v1/qrcodes/${this.qrcodeuuid}?mode=${mode}`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${this.apitoken}` },
         })

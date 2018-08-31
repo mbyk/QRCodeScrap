@@ -19,6 +19,7 @@ router.get('/', function(req, res, next) {
       res.render('index', { title: title, user: user, qrcodes:json.results, meta: json.meta });
     })
     .catch((err) => {
+			console.log(`err: ${err}`);
       res.render('index', { title: title, user: user, qrcodes: [], meta: null});
     });
 
