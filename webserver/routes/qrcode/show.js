@@ -26,12 +26,7 @@ router.get('/:id', (req, res, next) => {
           qrcodeUuid: qrcodeUuid
         });
       } else {
-        res.render('qrcode/show', {
-          title: title,
-          user: user,
-          apiToken: apiToken,
-          qrcodeUuid: qrcodeUuid
-        });
+  	res.status(404).send('not found.');
       }
     })
     .catch((err) => {
