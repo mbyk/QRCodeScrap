@@ -1,0 +1,13 @@
+default: &default
+  qrcode_gen_domain: 'localhost'
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+  qrcode_gen_domain: 'qrcode-scrap.craftkit.me'
+
