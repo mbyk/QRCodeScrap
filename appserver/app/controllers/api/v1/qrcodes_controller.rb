@@ -15,7 +15,7 @@ class Api::V1::QrcodesController < ApplicationController
     @qrcode.qrcode_uuid = qrcode_uuid
     @qrcode.user = @current_user
 
-    qr = RQRCode::QRCode.new( "http://localhost:3000/qrcode/#{qrcode_uuid}", :size => 10, :level => :h )
+    qr = RQRCode::QRCode.new( "https://#{EasySettings.qrcode_gen_domain}/qrcode/#{qrcode_uuid}", :size => 10, :level => :h )
     base64_image = qr.to_img.resize(400,400).to_data_url
     content = base64_image.split(',', 2).last
     @qrcode.base64img = content
