@@ -15,6 +15,10 @@
       qrcode: {
         type: Object,
         required: true
+      },
+      apikey: {
+        type: String,
+        required: true
       }
     },
 
@@ -25,7 +29,7 @@
 
     computed: {
       previewUrl: function() {
-        return `https://www.google.com/maps/embed/v1/place?key=AIzaSyA87cgvREgRz-o8ul9HuG8OhxIW1PYqAyM&q=${this.encodedAddress}`
+        return `https://www.google.com/maps/embed/v1/place?key=${this.apikey}&q=${this.encodedAddress}`
       },
       
       encodedAddress: function() {

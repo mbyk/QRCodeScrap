@@ -13,7 +13,7 @@ block content
       if qrcode.gen_type === 1 
         <link-detail :qrcode="{ info: #{JSON.stringify(qrcode)}}"></link-detail>
       if qrcode.gen_type === 2
-        <map-detail :qrcode="{ info: #{JSON.stringify(qrcode)}}"></map-detail>
+        <map-detail :qrcode="{ info: #{JSON.stringify(qrcode)}}" apikey=#{config.GOOGLE_MAP_APIKEY}></map-detail>
 
       if user
         div#mylist_button 

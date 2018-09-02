@@ -23,7 +23,8 @@ router.get('/:id', (req, res, next) => {
           user: user,
           qrcode: json.result,
           apiToken: apiToken,
-          qrcodeUuid: qrcodeUuid
+          qrcodeUuid: qrcodeUuid,
+          config: config
         });
       } else {
   	res.status(404).send('not found.');
@@ -34,7 +35,8 @@ router.get('/:id', (req, res, next) => {
         title: title,
         user: user,
         apiToken: apiToken,
-        qrcodeUuid: qrcodeUuid
+        qrcodeUuid: qrcodeUuid,
+        config: config
       });
     });
 

@@ -11,7 +11,8 @@ router.get('/new', (req, res, next) => {
   const user = parseUser(req);
   res.render('qrcode/new', {
     title: '新規作成',
-    user: user
+    user: user,
+    config: config
   });
 })
 

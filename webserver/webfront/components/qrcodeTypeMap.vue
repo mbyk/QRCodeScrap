@@ -17,12 +17,14 @@
     data() {
       return {
         title: '',
-        address: ''
+        address: '',
+        apikey: ''
       }
     },
 
     mounted() {
       this.$emit('validate', this.isValid);
+      this.apikey = $('#category-select').data('apikey');
     },
 
 
@@ -62,7 +64,7 @@
         iframe.setAttribute('class', 'map-top');
         iframe.setAttribute('width', '300');
         iframe.setAttribute('height', '200');
-        iframe.setAttribute('src', `https://www.google.com/maps/embed/v1/place?key=AIzaSyA87cgvREgRz-o8ul9HuG8OhxIW1PYqAyM&q=${encodedAddress}`);
+        iframe.setAttribute('src', `https://www.google.com/maps/embed/v1/place?key=${this.apikey}&q=${encodedAddress}`);
         iframe.setAttribute('allowfullscreen', '');
         mapContainer.appendChild(iframe);
       }

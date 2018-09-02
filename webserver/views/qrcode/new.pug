@@ -2,7 +2,8 @@ extends ../layout
 
 block content
   form(action="/qrcode" method="POST")#new_container
-    category-select
-    router-view(@validate="validatePostData")
+    - var apikey = config.GOOGLE_MAP_APIKEY
+    <category-select data-apikey=#{apikey} id="category-select"></category-select>
+    router-view(@validate="validatePostData") 
     div
       input(type="submit" value="作成" :class="{ disabled: !newPostValidated }")

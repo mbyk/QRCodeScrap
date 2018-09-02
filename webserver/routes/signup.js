@@ -7,7 +7,6 @@ const axios = require('axios');
 const config = require('../config');
 
 router.get('/', (req, res, next) => {
-
   const user = parseUser(req);
 
   res.render('signup', {

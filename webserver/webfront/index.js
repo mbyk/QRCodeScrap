@@ -11,7 +11,7 @@ import qrcodeTypeLink from './components/qrcodeTypeLink.vue'
 import qrcodeTypeMap from './components/qrcodeTypeMap.vue'
 import linkDetail from './components/linkDetail.vue'
 import mapDetail from './components/mapDetail.vue'
-
+import config from '../config'
 
 const routes = [
   { path: '/link', component: qrcodeTypeLink },
@@ -37,7 +37,6 @@ new Vue({
 
   created() {
     this.$on('show', function() {
-      console.log('show!!!!!!!');
     })
   },
 
