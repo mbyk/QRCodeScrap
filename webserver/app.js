@@ -8,6 +8,7 @@ var config = require('./config');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var loginAccessDenyHandler = require('./routes/loginAccessDenyHandler')
+var helmet = require('helmet');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -23,7 +24,6 @@ var api = require('./routes/api/v1/api');
 
 var app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -34,6 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(helmet());
 
 app.use(session({
   store: new RedisStore({
